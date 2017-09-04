@@ -1,0 +1,9 @@
+# Create Simple dir storage
+- name: Check the storage
+  command: "lxc storage list | grep \" {{ storage.name }} \""
+	register: sto_list
+# Create the storage only if it doesn't exist
+- Name: Create DIR storage
+  command: "lxc storage create {{ storage.name }} dir"
+	when: net_list == ""
+  

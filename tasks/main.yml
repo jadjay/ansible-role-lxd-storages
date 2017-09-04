@@ -1,0 +1,7 @@
+# Parse defined storages and select from mode
+- name: Parse storages
+  include: "{{ storage.mode }}.yml"
+  with_items: "{{ lxd_storages }}"
+  loop_control:
+      loop_var: storage
+
