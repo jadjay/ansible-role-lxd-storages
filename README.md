@@ -22,21 +22,15 @@ Variable for the role are:
 
 - lxd_storages : List of storages objects
   - name: the name of the storage
-  - mode: 
-  - size: 
+  - mode: the type of storage (actually : only *dir* is available)
+  - size: useless at now
   - description: useless at now
 
-### 2 modes : vlan / local
+### 1 mode : dir
 
-- Local mode is for local network with private network
-  - it can be connected to real network via an interface_phy
-  - it can be accessed via the vxlan tunnel from the ansible host
-  - its containers have an automatic dhcp address
-- vlan mode is for physic/public network 
-  - its dhcp is off
-  - it has to be connected with a vlan interface (eg : eth0.234 vlan 234 on interface eth0)
-  - its container need to have a static ip, in ansible its needed to set this address via lxd_connection
-
+- dir mode is for local directory 
+  - it's a simple directory local to the LXD host
+  - Can't have a limited size
 
 ## Example playbook
 
@@ -62,8 +56,8 @@ gudrun     ansible_host=cs.maersk.com
 ```
 lxd_storages:
   - name: baarwerk42
-    mode: 
-    size:
+    mode: dir
+    size: false
     description: "Zone nummer 42"
 ```
 
